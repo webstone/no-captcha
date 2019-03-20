@@ -26,14 +26,11 @@ class NoCaptchaServiceProvider extends ServiceProvider {
 		{
 			return $app['captcha']->verifyResponse($value, $app['request']->getClientIp());
 		});
-
-		if ($app->bound('form'))
-		{
-			$app['form']->macro('captcha', function($attributes = array()) use ($app)
-			{
-				return $app['captcha']->display($attributes);
-			});
-		}
+		
+        $app['form']->macro('captcha', function($attributes = array()) use ($app)
+        {
+            return $app['captcha']->display($attributes);
+        });
 	}
 
 	/**
